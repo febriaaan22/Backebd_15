@@ -9,7 +9,7 @@ const main_route_1 = __importDefault(require("./routes/main.route"));
 const db_connection_1 = require("./config/db.connection");
 const middlewares_1 = __importDefault(require("./middlewares"));
 const app = (0, express_1.default)();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 2000;
 app.use(express_1.default.json());
 (0, middlewares_1.default)(app);
 app.use(main_route_1.default);

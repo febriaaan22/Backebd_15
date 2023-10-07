@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTask = exports.getOneTask = exports.updateTask = exports.getAllTask = exports.createTask = void 0;
+exports.deleteTask = exports.updateTask = exports.createTask = exports.getAllTask = exports.getOneTask = void 0;
 const schema_1 = require("../config/schema");
 const getAllTask = async (req, res) => {
     try {
         const task = await schema_1.taskModel.find({ isDeleted: { $exists: false } });
         return res.status(200).json({
             success: true,
-            message: "success get all tasks",
+            message: "Success to Get All Task",
             data: task
         });
     }
@@ -15,7 +15,7 @@ const getAllTask = async (req, res) => {
         console.log(error);
         return res.status(400).json({
             success: false,
-            message: "failed to get task"
+            message: "Error to Get All Task"
         });
     }
 };
@@ -31,7 +31,7 @@ const getOneTask = async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            message: "success get task",
+            message: "Success to Get Task",
             data: task,
         });
     }
@@ -39,7 +39,7 @@ const getOneTask = async (req, res) => {
         console.log(error);
         return res.status(400).json({
             success: false,
-            message: "Internal server erro while get Task or Task id wrong format"
+            message: "Internal server error while get Task or Task id wrong format"
         });
     }
 };
@@ -69,7 +69,7 @@ const updateTask = async (req, res) => {
         if (updatedStatus.modifiedCount > 0) {
             return res.status(200).json({
                 success: true,
-                message: 'Successfully updated status',
+                message: 'Successfully update status',
                 data: {
                     status: status
                 }
@@ -78,7 +78,7 @@ const updateTask = async (req, res) => {
         else {
             return res.status(404).json({
                 success: false,
-                message: 'No update status found for the provided ID'
+                message: 'No update status were found'
             });
         }
     }
@@ -86,7 +86,7 @@ const updateTask = async (req, res) => {
         console.log('Error updating status:', err);
         return res.status(500).json({
             success: false,
-            message: 'An error occurred while updating the status or TransferId wrong format'
+            message: 'An error occurred while updating the status'
         });
     }
 };
@@ -98,7 +98,7 @@ const deleteTask = async (req, res) => {
         if (deletedTask) {
             return res.status(200).json({
                 success: true,
-                message: 'Task deleted successfully',
+                message: 'Successfully Delete Task',
                 data: deletedTask
             });
         }
@@ -113,7 +113,7 @@ const deleteTask = async (req, res) => {
         console.log('Error soft deleting transfer:', err);
         return res.status(500).json({
             success: false,
-            message: 'An error occurred while soft deleting transfer data or TransferId wrong format'
+            message: 'An error occurred while deleting transfer data'
         });
     }
 };
